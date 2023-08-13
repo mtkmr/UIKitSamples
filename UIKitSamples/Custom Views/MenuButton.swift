@@ -7,15 +7,20 @@
 
 import UIKit
 
+struct MenuContent {
+    let title: String
+    let subtitles: [String]
+}
+
 final class MenuButton: UIControl {
     private let titleLabel = UILabel()
     private let iconImageView = UIImageView()
     private let hStack = UIStackView()
 
-    var titles: [String] = []
-    var currentTitle: String? {
+    var menuContents: [MenuContent] = []
+    var currentMenuTitle: String? {
         didSet {
-            titleLabel.text = currentTitle
+            titleLabel.text = currentMenuTitle
         }
     }
     var textColor: UIColor? {
@@ -34,7 +39,7 @@ final class MenuButton: UIControl {
             hStack.directionalLayoutMargins = newValue
         }
     }
-    var onMenu: ((String) -> Void)?
+    var onMenu: ((MenuContent) -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,12 +56,22 @@ final class MenuButton: UIControl {
                                    previewProvider: nil) { _ in
             UIMenu(title: "",
                    options: .displayInline,
-                   children: self.titles.map({ title in
-                UIAction(title: title) { [weak self] _ in
-                    self?.currentTitle = title
-                    self?.onMenu?(title)
+                   children: self.menuContents.map { menuContent in
+                if menuContent.subtitles.isEmpty {
+                    return UIAction(title: menuContent.title) { _ in
+                        self.currentMenuTitle = menuContent.title
+                        self.onMenu?(menuContent)
+                    }
+                } else {
+                    return UIMenu(title: menuContent.title,
+                                  children: menuContent.subtitles.map { subtitle in
+                        UIAction(title: subtitle) { _ in
+                            self.currentMenuTitle = subtitle
+                            self.onMenu?(menuContent)
+                        }
+                    })
                 }
-            }))
+            })
         }
     }
 
@@ -66,6 +81,7 @@ final class MenuButton: UIControl {
         titleLabel.textAlignment = .left
 
         iconImageView.image = UIImage(systemName: "chevron.down")
+        iconImageView.tintColor = titleLabel.textColor
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
 
         hStack.axis = .horizontal

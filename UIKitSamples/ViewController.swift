@@ -9,20 +9,23 @@ import UIKit
 
 final class ViewController: UIViewController {
 
-    private let menuButton = MenuButton()
-
-    private let menus = ["meat", "fish", "vegetables", "fruits"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupComponents()
-        setupLayoutConstraints()
+        setupUIMenu()
     }
+}
 
-    private func setupComponents() {
+//MARK: - UIMenu
+
+extension ViewController {
+    private func setupUIMenu() {
+        let menuButton = MenuButton()
         menuButton.textColor = .black
-        menuButton.titles = menus
-        menuButton.currentTitle = "Select menu"
+        menuButton.menuContents = [MenuContent(title: "meat", subtitles: []),
+                                   MenuContent(title: "fish", subtitles: []),
+                                   MenuContent(title: "vegetables", subtitles: []),
+                                   MenuContent(title: "fruits", subtitles: ["apple", "banana", "grape"]),]
+        menuButton.currentMenuTitle = "menus"
         menuButton.layer.borderWidth = 1.0
         menuButton.layer.borderColor = UIColor.black.cgColor
         menuButton.layer.cornerRadius = 9.0
@@ -34,9 +37,7 @@ final class ViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         view.addSubview(menuButton)
-    }
 
-    private func setupLayoutConstraints() {
         NSLayoutConstraint.activate([
             menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
@@ -45,4 +46,3 @@ final class ViewController: UIViewController {
         ])
     }
 }
-
