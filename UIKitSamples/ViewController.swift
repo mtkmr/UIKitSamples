@@ -11,14 +11,14 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIMenu()
+        setupComponents()
     }
 }
 
 //MARK: - UIMenu
 
 extension ViewController {
-    private func setupUIMenu() {
+    private func setupComponents() {
         let menuButton = MenuButton()
         menuButton.textColor = .black
         menuButton.menuContents = [MenuContent(title: "meat", subtitles: []),
