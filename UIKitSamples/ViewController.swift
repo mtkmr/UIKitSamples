@@ -35,14 +35,59 @@ extension ViewController {
             // action code
         }
 
+        let showSemiModalButton = UIButton()
+        showSemiModalButton.backgroundColor = .systemOrange
+        showSemiModalButton.tintColor = .white
+        showSemiModalButton.setTitle("Show Semi-Modal", for: .normal)
+        showSemiModalButton.translatesAutoresizingMaskIntoConstraints = false
+        showSemiModalButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self else { return }
+            // Show Semi-Modal
+            let vc = SemiModalViewController()
+            if let sheet = vc.sheetPresentationController {
+                sheet.detents = [.custom { 0.3 * $0.maximumDetentValue },
+                                 .medium(),
+                                 .large(),]
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 10
+                sheet.largestUndimmedDetentIdentifier = .medium
+            }
+            self.present(vc, animated: true)
+        }),
+                                      for: .touchUpInside)
+
+
+        let vStack = UIStackView()
+        vStack.axis = .vertical
+        vStack.alignment = .center
+        vStack.spacing = 8.0
+        vStack.translatesAutoresizingMaskIntoConstraints = false
+        vStack.addArrangedSubview(menuButton)
+        vStack.addArrangedSubview(showSemiModalButton)
+
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(vStack)
+
         view.backgroundColor = .systemBackground
-        view.addSubview(menuButton)
+        view.addSubview(scrollView)
 
         NSLayoutConstraint.activate([
-            menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            menuButton.widthAnchor.constraint(equalToConstant: 120),
+            menuButton.widthAnchor.constraint(equalToConstant: 240),
             menuButton.heightAnchor.constraint(equalToConstant: 44),
+
+            showSemiModalButton.widthAnchor.constraint(equalToConstant: 240),
+            showSemiModalButton.heightAnchor.constraint(equalToConstant: 44),
+
+            vStack.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            vStack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            vStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }

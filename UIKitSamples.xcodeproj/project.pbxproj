@@ -12,6 +12,7 @@
 		8C197D2B2A887FE4006B3233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C197D2A2A887FE4006B3233 /* Assets.xcassets */; };
 		8C197D2E2A887FE4006B3233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C197D2C2A887FE4006B3233 /* LaunchScreen.storyboard */; };
 		8C197D362A888260006B3233 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C197D352A888260006B3233 /* MenuButton.swift */; };
+		8C6BEA382AADAA370011A7FD /* SemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BEA372AADAA370011A7FD /* SemiModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8C197D2D2A887FE4006B3233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C197D2F2A887FE4006B3233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C197D352A888260006B3233 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		8C6BEA372AADAA370011A7FD /* SemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				8C197D212A887FE2006B3233 /* AppDelegate.swift */,
 				8C197D252A887FE2006B3233 /* ViewController.swift */,
+				8C6BEA372AADAA370011A7FD /* SemiModalViewController.swift */,
 				8C197D372A888962006B3233 /* Custom Views */,
 				8C197D2A2A887FE4006B3233 /* Assets.xcassets */,
 				8C197D2C2A887FE4006B3233 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			files = (
 				8C197D262A887FE2006B3233 /* ViewController.swift in Sources */,
 				8C197D222A887FE2006B3233 /* AppDelegate.swift in Sources */,
+				8C6BEA382AADAA370011A7FD /* SemiModalViewController.swift in Sources */,
 				8C197D362A888260006B3233 /* MenuButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
